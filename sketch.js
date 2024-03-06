@@ -18,10 +18,6 @@ let highest = 0
 function setup() {
   createCanvas(windowWidth, windowHeight);
   
-  //game rule
-  createP('keyboard: up arrow to jump, down arrow to duck')
-  createP('touch screen: tap to jump, double touch to duck')
-  
   rectX = 80 ; rectY = height*3/4-rectWidth*2
   squareWidth = random(0.8,1.2)*squareWidthStart
   squareX = width ; squareY = height*3/4-squareWidth
@@ -31,7 +27,7 @@ function draw() {
   background('lightblue');
   
   //check standing
-  if(touches.length == 2 || (keyIsPressed && keyCode == DOWN_ARROW)){
+  if(touches.length == 2 || (keyIsPressed && key=='s')){
     standing = false
   }
   else{
@@ -76,6 +72,10 @@ function draw() {
   textFont('Micro 5')
   text('Hi-Score: '+str(highest),width/2,50)
   
+  //game rule
+  text('keyboard: \'w\' to jump, \'s\' to duck',width/2,height-100)
+  text('touch screen: tap to jump, double touch to duck',width/2,height-70)
+  
   //restart button
   push()
   fill('rgb(219,219,118)')
@@ -115,7 +115,7 @@ function draw() {
     textFont('Micro 5')
     textAlign(CENTER)
     textSize(40)
-    text('You dodged '+str(count)+' squares',width/2,height-50)
+    text('You dodged '+str(count)+' squares',width/2,height/2)
     if(highest < count){
       highest = count
     }
@@ -124,7 +124,7 @@ function draw() {
 }
 
 function keyPressed(){
-  if(keyCode == UP_ARROW && !floating){
+  if(key == 'w' && !floating){
     rectYvel += jumpForce
     floating = true
   }
