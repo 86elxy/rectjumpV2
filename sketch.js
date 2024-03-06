@@ -16,7 +16,7 @@ let count = 0
 let highest = 0
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth, windowHeight);
   
   //game rule
   createP('keyboard: up arrow to jump, down arrow to duck')
